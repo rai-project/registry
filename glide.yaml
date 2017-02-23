@@ -1,0 +1,17 @@
+package: github.com/rai-project/registry
+import:
+- package: github.com/Sirupsen/logrus
+  version: ~0.11.2
+- package: github.com/docker/libkv
+  version: ~0.2.1
+  subpackages:
+  - store
+  - store/boltdb
+  - store/consul
+  - store/etcd
+  - store/zookeeper
+- package: github.com/k0kubun/pp
+  version: ~2.3.0
+- package: github.com/rai-project/config
+- package: github.com/rai-project/logger
+- package: github.com/rai-project/vipertags

@@ -5,5 +5,8 @@
 registry:
   provider: etcd
   endpoints:
-    - XXX
+    - 127.0.0.1
+  username: root
+  password: foo
+  timeout: 5s
 ~~~
