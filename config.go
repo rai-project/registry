@@ -27,7 +27,7 @@ func (registryConfig) ConfigName() string {
 	return "Registry"
 }
 
-func (registryConfig) setDefaults() {
+func (registryConfig) SetDefaults() {
 }
 
 func (a *registryConfig) Read() {
