@@ -15,12 +15,12 @@ type Store interface {
 	store.Store
 }
 
-func NewStore() {
+func NewStore() (store.Store, error) {
 	endpoints := []string{}
 	for _, e := range Config.Endpoints {
 		endpoints = append(endpoints, strings.TrimLeft(strings.TrimLeft(e, "http://"), "https://"))
 	}
-	libkv.NewStore(Config.Provider, endpoints, &store.Config{
+	return libkv.NewStore(Config.Provider, endpoints, &store.Config{
 		ConnectionTimeout: Config.Timeout,
 		Username:          Config.Username,
 		Password:          Config.Password,
