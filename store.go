@@ -13,8 +13,8 @@ type Store interface {
 	store.Store
 }
 
-func NewStore() {
-	libkv.NewStore(Config.Provider, Config.Endpoints, &store.Config{
+func NewStore() (store.Store, error) {
+	return libkv.NewStore(Config.Provider, Config.Endpoints, &store.Config{
 		ConnectionTimeout: Config.Timeout,
 		Username:          Config.Username,
 		Password:          Config.Password,
