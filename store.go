@@ -1,6 +1,8 @@
 package registry
 
 import (
+	"strings"
+
 	"github.com/docker/libkv"
 	store "github.com/docker/libkv/store"
 	"github.com/docker/libkv/store/boltdb"
@@ -14,7 +16,11 @@ type Store interface {
 }
 
 func NewStore() {
-	libkv.NewStore(Config.Provider, Config.Endpoints, &store.Config{
+	endpoints := []string{}
+	for _, e := range Config.Endpoints {
+		endpoints = append(endpoints, strings.TrimLeft(strings.TrimLeft(e, "http://"), "https://"))
+	}
+	libkv.NewStore(Config.Provider, endpoints, &store.Config{
 		ConnectionTimeout: Config.Timeout,
 		Username:          Config.Username,
 		Password:          Config.Password,
