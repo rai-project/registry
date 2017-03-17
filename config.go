@@ -11,23 +11,27 @@ import (
 )
 
 type registryConfig struct {
-	ProviderString string        `json:"provider" config:"registry.provider" default:"etcd"`
+	ProviderString string        `json:"provider" config:"registry.provider"`
 	Provider       store.Backend `json:"-" config:"-"`
 	Endpoints      []string      `json:"endpoints" config:"registry.endpoints"`
 	Username       string        `json:"username" config:"registry.username"`
 	Password       string        `json:"-" config:"registry.password"`
 	Timeout        time.Duration `json:"timeout" config:"registry.timeout"`
+	done           chan struct{} `json:"-" config:"-"`
 }
 
 var (
-	Config = &registryConfig{}
+	Config = &registryConfig{
+		done: make(chan struct{}),
+	}
 )
 
 func (registryConfig) ConfigName() string {
 	return "Registry"
 }
 
-func (registryConfig) SetDefaults() {
+func (a *registryConfig) SetDefaults() {
+	vipertags.SetDefaults(a)
 }
 
 func (a *registryConfig) Read() {
@@ -44,6 +48,10 @@ func (a *registryConfig) Read() {
 	default:
 		a.Provider = store.ETCD
 	}
+}
+
+func (c registryConfig) Wait() {
+	<-c.done
 }
 
 func (c registryConfig) String() string {
