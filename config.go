@@ -35,6 +35,7 @@ func (a *registryConfig) SetDefaults() {
 }
 
 func (a *registryConfig) Read() {
+	defer close(a.done)
 	vipertags.Fill(a)
 	switch strings.ToLower(a.ProviderString) {
 	case "consul":
