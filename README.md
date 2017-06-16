@@ -11,6 +11,8 @@ registry:
   username: root
   password: foo
   timeout: 5s
-  certification: XXX
+  certificate: XXX
   bucket: name_of_bucket
+  header_timeout_per_request: 1m
+  auto_sync: true
 ~~~
