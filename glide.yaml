@@ -1,16 +1,23 @@
 package: github.com/rai-project/registry
 import:
-- package: github.com/sirupsen/logrus
-  version: ^1.0.0
+- package: github.com/k0kubun/pp
+  version: ~2.3.0
+- package: github.com/rai-project/config
 - package: github.com/rai-project/libkv
   subpackages:
   - store
   - store/boltdb
   - store/consul
   - store/etcd
+  - store/mock
   - store/zookeeper
-- package: github.com/k0kubun/pp
-  version: ~2.3.0
-- package: github.com/rai-project/config
 - package: github.com/rai-project/logger
+- package: github.com/rai-project/utils
 - package: github.com/rai-project/vipertags
+- package: github.com/sirupsen/logrus
+  version: ^1.0.0
+testImport:
+- package: github.com/stretchr/testify
+  version: ~1.1.4
+  subpackages:
+  - assert
