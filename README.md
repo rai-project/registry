@@ -11,4 +11,6 @@ registry:
   username: root
   password: foo
   timeout: 5s
+  certification: XXX
+  bucket: name_of_bucket
 ~~~

@@ -2,8 +2,7 @@ package: github.com/rai-project/registry
 import:
 - package: github.com/sirupsen/logrus
   version: ^1.0.0
-- package: github.com/docker/libkv
-  version: ~0.2.1
+- package: github.com/rai-project/libkv
   subpackages:
   - store
   - store/boltdb

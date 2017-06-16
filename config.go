@@ -4,20 +4,25 @@ import (
 	"strings"
 	"time"
 
-	"github.com/docker/libkv/store"
 	"github.com/k0kubun/pp"
 	"github.com/rai-project/config"
+	"github.com/rai-project/libkv/store"
 	"github.com/rai-project/vipertags"
 )
 
 type registryConfig struct {
-	ProviderString string        `json:"provider" config:"registry.provider"`
-	Provider       store.Backend `json:"-" config:"-"`
-	Endpoints      []string      `json:"endpoints" config:"registry.endpoints"`
-	Username       string        `json:"username" config:"registry.username"`
-	Password       string        `json:"-" config:"registry.password"`
-	Timeout        time.Duration `json:"timeout" config:"registry.timeout"`
-	done           chan struct{} `json:"-" config:"-"`
+	ProviderString          string        `json:"provider" config:"registry.provider"`
+	Provider                store.Backend `json:"-" config:"-"`
+	Endpoints               []string      `json:"endpoints" config:"registry.endpoints"`
+	Username                string        `json:"username" config:"registry.username"`
+	Password                string        `json:"-" config:"registry.password"`
+	Timeout                 time.Duration `json:"timeout" config:"registry.timeout" default:"10s"`
+	HeaderTimeoutPerRequest time.Duration `json:"header_timeout_per_request" config:"registry.header_timeout_per_request"`
+	Bucket                  string        `json:"bucket" config:"registry.bucket"`
+	AutoSync                bool          `json:"auto_Sync" config:"registry.auto_sync" default:"true"`
+	Certificate             string        `json:"certificate" config:"registry.certificate"`
+
+	done chan struct{} `json:"-" config:"-"`
 }
 
 var (
@@ -36,18 +41,14 @@ func (a *registryConfig) SetDefaults() {
 
 func (a *registryConfig) Read() {
 	defer close(a.done)
+	config.App.Wait()
 	vipertags.Fill(a)
-	switch strings.ToLower(a.ProviderString) {
-	case "consul":
-		a.Provider = store.CONSUL
-	case "zk", "zookeeper":
-		a.Provider = store.ZK
-	case "bolt", "boltdb":
-		a.Provider = store.BOLTDB
-	case "etcd":
-		a.Provider = store.ETCD
-	default:
-		a.Provider = store.ETCD
+	if a.Certificate != "" {
+		a.Certificate = decrypt(a.Certificate)
+	}
+	a.Provider = getProvider(a.ProviderString)
+	if strings.TrimSpace(a.Bucket) == "" {
+		a.Bucket = config.App.Name
 	}
 }
 
