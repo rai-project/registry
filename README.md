@@ -1,5 +1,5 @@
 
-#Registry [![Build Status](https://travis-ci.org/rai-project/registry.svg?branch=master)](https://travis-ci.org/rai-project/registry)
+# Registry [![Build Status](https://travis-ci.org/rai-project/registry.svg?branch=master)](https://travis-ci.org/rai-project/registry)
 
 ## Config
 
