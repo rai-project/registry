@@ -16,7 +16,7 @@ type Store interface {
 	store.Store
 }
 
-func New(opts ...Option) (store.Store, error) {
+func New(opts ...Option) (Store, error) {
 	options := Options{
 		Provider:          Config.Provider,
 		Endpoints:         cleanupEndpoints(Config.Endpoints),

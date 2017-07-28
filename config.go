@@ -7,6 +7,10 @@ import (
 	"github.com/k0kubun/pp"
 	"github.com/rai-project/config"
 	"github.com/rai-project/libkv/store"
+	"github.com/rai-project/serializer"
+	_ "github.com/rai-project/serializer/bson"
+	_ "github.com/rai-project/serializer/json"
+	_ "github.com/rai-project/serializer/jsonpb"
 	"github.com/rai-project/vipertags"
 )
 
@@ -21,6 +25,9 @@ type registryConfig struct {
 	Bucket                  string        `json:"bucket" config:"registry.bucket"`
 	AutoSync                bool          `json:"auto_Sync" config:"registry.auto_sync" default:"true"`
 	Certificate             string        `json:"certificate" config:"registry.certificate"`
+
+	Serializer     serializer.Serializer `json:"-" config:"-"`
+	SerializerName string                `json:"serializer_name" config:"broker.serializer" default:"json"`
 
 	done chan struct{} `json:"-" config:"-"`
 }
@@ -50,6 +57,7 @@ func (a *registryConfig) Read() {
 	if strings.TrimSpace(a.Bucket) == "" {
 		a.Bucket = config.App.Name
 	}
+	a.Serializer, _ = serializer.FromName(a.SerializerName)
 }
 
 func (c registryConfig) Wait() {
