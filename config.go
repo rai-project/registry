@@ -27,7 +27,7 @@ type registryConfig struct {
 	Certificate             string        `json:"certificate" config:"registry.certificate"`
 
 	Serializer     serializer.Serializer `json:"-" config:"-"`
-	SerializerName string                `json:"serializer_name" config:"broker.serializer" default:"json"`
+	SerializerName string                `json:"serializer_name" config:"registry.serializer" default:"jsonpb"`
 
 	done chan struct{} `json:"-" config:"-"`
 }
