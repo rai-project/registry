@@ -12,10 +12,15 @@ import:
   - store/mock
   - store/zookeeper
 - package: github.com/rai-project/logger
+- package: github.com/rai-project/serializer
+  subpackages:
+  - bson
+  - json
+  - jsonpb
 - package: github.com/rai-project/utils
 - package: github.com/rai-project/vipertags
 - package: github.com/sirupsen/logrus
-  version: ^1.0.0
+  version: ~1.0.2
 testImport:
 - package: github.com/stretchr/testify
   subpackages:
