@@ -17,7 +17,7 @@ import (
 type registryConfig struct {
 	ProviderString          string        `json:"provider" config:"registry.provider"`
 	Provider                store.Backend `json:"-" config:"-"`
-	Endpoints               []string      `json:"endpoints" config:"registry.endpoints"`
+	Endpoints               []string      `json:"endpoints" config:"registry.endpoints" env:"REGISTRY_ENDPOINTS"`
 	Username                string        `json:"username" config:"registry.username"`
 	Password                string        `json:"-" config:"registry.password"`
 	Timeout                 time.Duration `json:"timeout" config:"registry.timeout" default:"10s"`
