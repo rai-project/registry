@@ -20,6 +20,11 @@
   revision = "eb2c6b5be1b66bab83016e0b05f01b8d5496ffbd"
 
 [[projects]]
+  name = "github.com/armon/go-metrics"
+  packages = ["."]
+  revision = "3df31a1ada83e310c2e24b267c8e8b68836547b4"
+
+[[projects]]
   name = "github.com/boltdb/bolt"
   packages = ["."]
   revision = "2f1ce7a837dcb8da3ec595b1dac9d0632f0f99e8"
@@ -122,8 +127,7 @@
 [[projects]]
   name = "github.com/hashicorp/serf"
   packages = ["coordinate"]
-  revision = "d6574a5bb1226678d7010325fb6c985db20ee458"
-  version = "v0.8.1"
+  revision = "4b67f2c2b2bb5b748d934a6d48221062e43d2274"
 
 [[projects]]
   name = "github.com/json-iterator/go"
@@ -210,6 +214,7 @@
   revision = "a501614c3b8d510e2ae9a92ffa9477d880a48157"
 
 [[projects]]
+  branch = "master"
   name = "github.com/rai-project/libkv"
   packages = [
     ".",
@@ -220,8 +225,7 @@
     "store/mock",
     "store/zookeeper"
   ]
-  revision = "f01cf81553df65a5e18bce2503a3db96b9059cd7"
-  version = "v0.2.18"
+  revision = "11c2565b618ffc9a85fd1842155c9a3d85422bd4"
 
 [[projects]]
   branch = "master"
@@ -238,7 +242,7 @@
     "json",
     "jsonpb"
   ]
-  revision = "b7aa1b20d820727ee42c33398ed82d17e6ee5c53"
+  revision = "d4f68b69a9979688d517dbbee0edf361bdca7c34"
 
 [[projects]]
   branch = "master"
@@ -250,7 +254,7 @@
   branch = "master"
   name = "github.com/rai-project/vipertags"
   packages = ["."]
-  revision = "1b2055ebed224c84d28b34112454ba8b7cc4d491"
+  revision = "1ba1bde0b4ed99b017e484a31738af53d0b0c81d"
 
 [[projects]]
   branch = "master"
@@ -318,8 +322,7 @@
 [[projects]]
   name = "github.com/ugorji/go"
   packages = ["codec"]
-  revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
-  version = "v1.1.1"
+  revision = "bdcc60b419d136a85cdf2e7cbcac34b3f1cd6e57"
 
 [[projects]]
   branch = "master"
@@ -347,12 +350,6 @@
     "ssh/terminal"
   ]
   revision = "a49355c7e3f8fe157a85be2f77e6e269a0f89602"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/net"
-  packages = ["context"]
-  revision = "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
 
 [[projects]]
   branch = "master"
@@ -400,6 +397,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c35293c1087fbce337936dd5854f564cc69c35ec87921f609a0861ee66e2036f"
+  inputs-digest = "c50597fd4b089b245f9f7d7d745f252fd1f9d3a4ae5fbe0b8138fa4aba9c900b"
   solver-name = "gps-cdcl"
   solver-version = 1

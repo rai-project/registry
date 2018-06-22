@@ -4,6 +4,7 @@ import:
   version: ~2.3.0
 - package: github.com/rai-project/config
 - package: github.com/rai-project/libkv
+  version: master
   subpackages:
   - store
   - store/boltdb
