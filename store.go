@@ -5,11 +5,12 @@ import (
 
 	"github.com/rai-project/libkv"
 	store "github.com/rai-project/libkv/store"
-	"github.com/rai-project/libkv/store/boltdb"
+
+	// "github.com/rai-project/libkv/store/boltdb"
 	"github.com/rai-project/libkv/store/consul"
-	"github.com/rai-project/libkv/store/etcd"
+	// "github.com/rai-project/libkv/store/etcd"
 	"github.com/rai-project/libkv/store/mock"
-	"github.com/rai-project/libkv/store/zookeeper"
+	// "github.com/rai-project/libkv/store/zookeeper"
 )
 
 type Store interface {
@@ -55,7 +56,7 @@ func New(opts ...Option) (Store, error) {
 
 func init() {
 	consul.Register()
-	boltdb.Register()
-	etcd.Register()
-	zookeeper.Register()
+	// boltdb.Register()
+	// etcd.Register()
+	// zookeeper.Register()
 }
